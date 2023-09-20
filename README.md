@@ -55,4 +55,4 @@ To publish the WMS and WFS layer the following steps were necessary:
 
 Bonus:
 Using CARTO to visualize the wind speed in Antarctica:
-- "https://pinea.app.carto.com/map/ef58381d-996d-4427-8fed-fcaa0d4d0dd4"
+- https://pinea.app.carto.com/map/ef58381d-996d-4427-8fed-fcaa0d4d0dd4
