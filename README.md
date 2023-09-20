@@ -1,8 +1,8 @@
-# NPIWebGISAssignment
+# NPI Web GIS Assignment
 
 #### David Studer
-#### davidstuder@gmx.ch
-#### +47 927 71 252
+#### Email: davidstuder@gmx.ch
+#### Tlf: +47 927 71 252
 
 ## Objective
 This README.md document explains the workflow for the Web-Gis-Assignment.
@@ -15,12 +15,11 @@ Bonus: For guaranteeing the integrity of the processed information the csv_to_ge
 
 # 2-DataStorage
 For storing the wind.json file in a postgresql/postGIS databse the following steps were necessary:
-
 - Install postgresql
 - Install PgAdmin4
 - Setup new Server (WindServer) and database (wind_data) and add postgis extension (CREATE EXTENSION postgis) in PgAdmin4
 - Install gdal using: '''conda install -c conda-forge gdal''' or '''brew install gdal'''
-- Change terminal directory to 2-DataStorage folder: cd /Users/davidstuder/Projects/3\ NPI\ Assignment/2-DataStorage/      
+- To upload geojson, change terminal directory to 2-DataStorage folder: cd /Users/davidstuder/Projects/3\ NPI\ Assignment/2-DataStorage/      
 - Run command: '''ogr2ogr -f "PostgreSQL" PG:"dbname=wind_data user=davidstuder" wind.json -nln wind_table''' - Uploads wind.json file into wind_data databse  
 - In pgAdmin4 '''SELECT '*' FROM wind_table''' to view data table
 - <img width="1507" alt="Screenshot 2023-09-19 at 18 44 44" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/86a6422e-d2cd-40bf-82bd-43a865c7e0ad">
@@ -28,7 +27,7 @@ For storing the wind.json file in a postgresql/postGIS databse the following ste
 
 # 3-DataPublication
 
-## Question: When you would publish the data as WFS and when as WMS, and when you would use both?
+## Question: When would you publish the data as WFS and when as WMS, and when would you use both?
 WMS (Web Map Service):
 Is used when the goal is to display static or dynamically generated maps as rasters. It simplifies the map rendering and the visualization and therefore reduces the amount of data that has to be loaded because it is able to send pre-rendered images.
 
@@ -40,7 +39,6 @@ A WMS Service can for example be used to display a basemap while the WFS Service
 
 ## Publish WMS & WFS Layer
 To publish the WMS and WFS layer the following steps were necessary:
-
 - Install GeoServer
 - Create a new Workspace (enable WMS & WFS) and a new store in GeoServer and connect to Postgresql wind_data database.
 - <img width="755" alt="Screenshot 2023-09-19 at 19 17 29" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/c7819bf0-04aa-4755-b62f-69a695eae598">
@@ -57,4 +55,4 @@ To publish the WMS and WFS layer the following steps were necessary:
 
 Bonus:
 Using CARTO to visualize the wind speed in Antarctica:
-- <iframe width="640px" height="360px" src="https://pinea.app.carto.com/map/ef58381d-996d-4427-8fed-fcaa0d4d0dd4"></iframe>
+<iframe width="640px" height="360px" src="https://pinea.app.carto.com/map/ef58381d-996d-4427-8fed-fcaa0d4d0dd4"></iframe>
