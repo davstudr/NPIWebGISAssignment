@@ -18,10 +18,10 @@ For storing the wind.json file in a postgresql/postGIS databse the following ste
 - Install postgresql
 - Install PgAdmin4
 - Setup new Server (WindServer) and database (wind_data) and add postgis extension (CREATE EXTENSION postgis) in PgAdmin4
-- Install gdal using: '''conda install -c conda-forge gdal''' or '''brew install gdal'''
+- Install gdal using: ```conda install -c conda-forge gdal``` or ```brew install gdal```
 - To upload geojson, change terminal directory to 2-DataStorage folder: cd /Users/davidstuder/Projects/3\ NPI\ Assignment/2-DataStorage/      
-- Run command: '''ogr2ogr -f "PostgreSQL" PG:"dbname=wind_data user=davidstuder" wind.json -nln wind_table''' - Uploads wind.json file into wind_data databse  
-- In pgAdmin4 '''SELECT '*' FROM wind_table''' to view data table
+- Run command: ```ogr2ogr -f "PostgreSQL" PG:"dbname=wind_data user=davidstuder" wind.json -nln wind_table``` - Uploads wind.json file into wind_data databse  
+- In pgAdmin4 ```SELECT '*' FROM wind_table``` to view data table
 - <img width="1507" alt="Screenshot 2023-09-19 at 18 44 44" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/86a6422e-d2cd-40bf-82bd-43a865c7e0ad">
 
 
@@ -56,3 +56,7 @@ To publish the WMS and WFS layer the following steps were necessary:
 Bonus:
 Using CARTO to visualize the wind speed in Antarctica:
 <iframe width="640px" height="360px" src="https://pinea.app.carto.com/map/ef58381d-996d-4427-8fed-fcaa0d4d0dd4"></iframe>
+
+- "https://pinea.app.carto.com/map/ef58381d-996d-4427-8fed-fcaa0d4d0dd4"
+
+- <iframe width="640px" height="360px" src="https://pinea.app.carto.com/map/ef58381d-996d-4427-8fed-fcaa0d4d0dd4"></iframe>
