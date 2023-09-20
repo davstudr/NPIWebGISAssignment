@@ -43,6 +43,7 @@ To publish the WMS and WFS layer the following steps were necessary:
 - Install GeoServer
 - Create a new Workspace (enable WMS & WFS) and a new store in GeoServer and connect to Postgresql wind_data database.
 <img width="755" alt="ScreenshotDataPublication1" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/59ccf984-2f0d-4a91-8735-f95e257f86ec">
+
 - Create new Layer and Publish Layer.
 <img width="1263" alt="ScreenshotDataPublication2" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/5d33015c-70a6-4d82-b92d-8eb1508ea4f0">
 
