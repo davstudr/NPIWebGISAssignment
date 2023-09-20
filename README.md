@@ -22,6 +22,9 @@ For storing the wind.json file in a postgresql/postGIS database the following st
 - In pgAdmin4 ```SELECT * FROM wind_table``` to view data table
  <img width="1507" alt="Screenshot 2023-09-19 at 18 44 44" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/86a6422e-d2cd-40bf-82bd-43a865c7e0ad">
 
+ ## CRS System:
+ No adjustment was done to the CRS System. All processing steps were done using WGS 84 (EPSG:4326). For clipping and visualisation purposes another coordinate system more suited for the Antarctic such as the WGS84 / Antarctic Polar Stereographic (EPSG:3031) could have been the better choice.
+
 
 # 3-DataPublication
 
@@ -30,7 +33,7 @@ WMS (Web Map Service):
 Is used when the goal is to display static or dynamically generated maps as rasters. It simplifies the map rendering and the visualization and therefore reduces the amount of data that must be loaded because it is able to send pre-rendered images.
 
 WFS (Web Feature Servie):
-Is used when the goal is to display vector data where the individual geospatial feature must be selected, edited or queried. 
+Is used when the goal is to display vector data where the individual geospatial feature must be selected, edited or queried. This is can be a heavy data loading task and reduce the performance of your application.
 
 Combining WMS and WFS:
 A WMS Service can for example be used to display a basemap while the WFS Service offers access to additional data that can be queried and edited.
