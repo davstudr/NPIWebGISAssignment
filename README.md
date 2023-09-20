@@ -9,28 +9,22 @@ This README.md document explains the workflow for the Web-Gis-Assignment.
 Each folder in the repository contains scripts and data necessary to complete one task. In addition to this document code is enriched with comments. The Assignment was done using MacOS. Some installation might differ on Windows or Linux.
 
 # 1-DataProcessing
-To convert the wind.csv file to a geosjon open the csvTOgeojson.py file. For running the file you need to have python installed inluding the geojson package. If you are using the Anaconda distribution you can use the following command in your terminal for installing geojson (macOS): #conda install -c conda-forge geojson#
+To convert the wind.csv file to a geosjon open the csvTOgeojson.py file. For running the file you need to have python installed inluding the geojson package. If you are using the Anaconda distribution you can use the following command in your terminal for installing geojson (macOS): '''conda install -c conda-forge geojson'''
 
-Bonus: For guaranteeing the integrity of the processed information the csv_to_geojson funciton includes a try statement to validate 
-
-Demonstrate which techniques could be used to guarantee the integrity of processed information. How would you ensure the processing pipeline is reproducible in case files have to be reprocessed later?
+Bonus: For guaranteeing the integrity of the processed information the csv_to_geojson funciton includes a try statement to validate each data entry. Several data entries were excluded due to wrong data formats.
 
 # 2-DataStorage
 For storing the wind.json file in a postgresql/postGIS databse the following steps were necessary:
 
 - Install postgresql
 - Install PgAdmin4
-- Setup new Server (WindServer) and database (wind_data) and add postgis extension (CREATE EXTENSION postgis) in PgAdmin4 
-- Install gdal using: conda install -c conda-forge gdal or brew install gdal
+- Setup new Server (WindServer) and database (wind_data) and add postgis extension (CREATE EXTENSION postgis) in PgAdmin4
+- Install gdal using: '''conda install -c conda-forge gdal''' or '''brew install gdal'''
 - Change terminal directory to 2-DataStorage folder: cd /Users/davidstuder/Projects/3\ NPI\ Assignment/2-DataStorage/      
-- Run command: ogr2ogr -f "PostgreSQL" PG:"dbname=wind_data user=davidstuder" wind.json -nln wind_table - Uploads wind.json file into wind_data databse  
-- In pgAdmin4 SELECT '*' FROM wind_table to view data table
+- Run command: '''ogr2ogr -f "PostgreSQL" PG:"dbname=wind_data user=davidstuder" wind.json -nln wind_table''' - Uploads wind.json file into wind_data databse  
+- In pgAdmin4 '''SELECT '*' FROM wind_table''' to view data table
+<img width="1507" alt="Screenshot 2023-09-19 at 18 44 44" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/86a6422e-d2cd-40bf-82bd-43a865c7e0ad">
 
-After processing the raw data it should be ingested into a database. It is your choice in which database to ingest the information.
-If you choose to work with PostgreSQL/PostGIS provide a script that loads the data into DB. Assume the DB is running on a localhost. Explain how to run loading script. You can provide a docker compose file if you prefer to work with containerized instances.
-
-Alternatively you can use sqlite, geopackage or similar. *Please explain your choice of data storage backend*. 
-Pay attention to selecting right the CRS.
 
 # 3-DataPublication
 
@@ -45,32 +39,26 @@ Combining WMS and WFS:
 A WMS Service can for example be used to display a basemap while the WFS Service offers access to additional data that can be queried and edited.
 
 ## Publish WMS & WFS Layer
-To publish whe WMS and WDS layer the following steps were necessary:
+To publish the WMS and WFS layer the following steps were necessary:
 
 - Install GeoServer
-- More detailed see word document: READMEAPPENDIX.docx
-
-
-Using the storage  generated in the previous step please publish the data as both WMS and WFS layers. 
-
-Suggestion: You can solve this task by installing a geoserver instance on your local machine. In such case please provide screenshots and text summary explaining data publishing steps. Alternatively you can provide a docker compose file that sets a geoserver instance and a script that publishes the data using Geoservers REST API. You can also use a public service like QGIS cloud to publish WMS and WFS layers. Please provide
-a summary how you have published the data including text and screenshots.
-
+- Create a new Workspace (enable WMS & WFS) and a new store in GeoServer and connect to Postgresql wind_data database.
+<img width="755" alt="Screenshot 2023-09-19 at 19 17 29" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/c7819bf0-04aa-4755-b62f-69a695eae598">
+- Create new Layer and Publish Layer.
+<img width="1263" alt="Screenshot 2023-09-19 at 19 21 07" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/4031ccf4-0039-4175-8bb8-9d3382a84778">
 
 # 4-DataVisualization
 
-
-- Establish WFS Connection from QGIS to GeoServer - Error, Attribute names had to be renamed so that they did not contain any spaces. That was done using pgAdmin4.
-- Styling of Wind Data points.
+- Establish WFS Connection from QGIS to GeoServer - an Error occured, Attribute names had to be renamed so that they did not contain any spaces. That was done in postgresql using pgAdmin4.
+- Styling of Wind Data points including export of sld style file.
 - Add Sentinel2 Basemap using the https://tiles.maps.eox.at/wms WMS Service that provides cloudless Sentinel-2 images. 
 - Add Antarctic coastline WMS Service from https://maps.bas.ac.uk/antarctic/wms
-- Filter for points that are in the Dronning Maud Land region
-
-Please create a QGIS project that uses published previously WFS layer. Use only the data points that fall into the Dronning Maud Land region. Please add a basemap, e.g. MODIS or Sentinel-2 satellite mosaic as a background, and a WFS layer containing coastline or other information that helps identifying the location. 
-
-Generate a specific style for displaying the data. Export the project file, SLD and QLD styles and add them to the deliverable package/repository. QGIS project here is used as a replacement for a web client.
+- Filter for points that are in the Dronning Maud Land region - Unfortunately no WFS Service or Geojson file of Dronning Maud Land could be found, therefore I skipped this step. If a file could have been found a simple Clip function in QGIS could have been used to exclude all points outside of Dronning Maud Land.
+<img width="1504" alt="image" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/9a92cb4c-5dac-464f-8b00-cb2590e86d1b">
 
 
 
-CARTO:
-Using a web mapping application illustrating the layers mentiond above is a bonus. In such case provide a link to the app/fiddle, image tag if application is published as a Docker image, or add source code for the application to the project.
+
+Bonus:
+Using CARTO to visualize the wind speed in Antarctica:
+<iframe width="640px" height="360px" src="https://pinea.app.carto.com/map/ef58381d-996d-4427-8fed-fcaa0d4d0dd4"></iframe>
