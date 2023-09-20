@@ -20,7 +20,7 @@ For storing the wind.json file in a postgresql/postGIS database the following st
 - To upload geojson to postgresql/postgis, change terminal directory to 2-DataStorage folder: ```cd /Users/davidstuder/Projects/3\ NPI\ Assignment/2-DataStorage/```    
 - Run command: ```ogr2ogr -f "PostgreSQL" PG:"dbname=wind_data user=davidstuder" wind.json -nln wind_table``` - Uploads wind.json file into wind_data database
 - In pgAdmin4 ```SELECT * FROM wind_table``` to view data table
- <img width="1507" alt="Screenshot 2023-09-19 at 18 44 44" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/86a6422e-d2cd-40bf-82bd-43a865c7e0ad">
+<img width="1507" alt="ScreenshotDataStorage" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/c07d4bbe-2b10-4cc5-9781-8e4a5de3d491">
 
  ## CRS System:
  No adjustment was done to the CRS System. All processing steps were done using WGS 84 (EPSG:4326). For clipping and visualisation purposes another coordinate system more suited for the Antarctic such as the WGS84 / Antarctic Polar Stereographic (EPSG:3031) could have been the better choice.
@@ -42,9 +42,10 @@ A WMS Service can for example be used to display a basemap while the WFS Service
 To publish the WMS and WFS layer the following steps were necessary:
 - Install GeoServer
 - Create a new Workspace (enable WMS & WFS) and a new store in GeoServer and connect to Postgresql wind_data database.
-- <img width="755" alt="Screenshot 2023-09-19 at 19 17 29" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/c7819bf0-04aa-4755-b62f-69a695eae598">
+<img width="755" alt="ScreenshotDataPublication1" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/59ccf984-2f0d-4a91-8735-f95e257f86ec">
 - Create new Layer and Publish Layer.
- <img width="1263" alt="Screenshot 2023-09-19 at 19 21 07" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/4031ccf4-0039-4175-8bb8-9d3382a84778">
+<img width="1263" alt="ScreenshotDataPublication2" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/5d33015c-70a6-4d82-b92d-8eb1508ea4f0">
+
 
 # 4-DataVisualization
 - Establish WFS Connection from QGIS to GeoServer (using Localhost: ```http://localhost:8080/geoserver/ows?acceptversions=2.0.0```) - an Error occurred, Attribute names had to be renamed so that they did not contain any spaces. That was done in postgresql using pgAdmin4.
@@ -52,7 +53,8 @@ To publish the WMS and WFS layer the following steps were necessary:
 - Add Sentinel 2 Basemap using the https://tiles.maps.eox.at/wms WMS Service that provides cloudless Sentinel-2 images. 
 - Add Antarctic coastline WMS Service from https://maps.bas.ac.uk/antarctic/wms
 - Filter for points that are in the Dronning Maud Land region - Unfortunately no WFS Service or Geojson file of Dronning Maud Land could be found, therefore I skipped this step. If a file could have been found a simple Clip function in QGIS could have been used to exclude all points outside of Dronning Maud Land.
- <img width="1504" alt="image" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/9a92cb4c-5dac-464f-8b00-cb2590e86d1b">
+<img width="1504" alt="Screenshot 2023-09-20 at 11 19 20" src="https://github.com/davstudr/NPIWebGISAssignment/assets/145550823/59e63147-c359-4e90-a602-5dbbc612bec2">
+
 
 Bonus:
 Using CARTO to visualize the wind speed in Antarctica:
