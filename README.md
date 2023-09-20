@@ -17,7 +17,7 @@ Bonus: For guaranteeing the integrity of the processed information the csv_to_ge
 For storing the wind.json file in a postgresql/postGIS databse the following steps were necessary:
 - Install postgresql
 - Install PgAdmin4
-- Setup new Server (WindServer) and database (wind_data) and add postgis extension (CREATE EXTENSION postgis) in PgAdmin4
+- Setup new Server (WindServer) and database (wind_data) and add postgis extension ```CREATE EXTENSION postgis``` in PgAdmin4
 - Install gdal using: ```conda install -c conda-forge gdal``` or ```brew install gdal```
 - To upload geojson, change terminal directory to 2-DataStorage folder: cd /Users/davidstuder/Projects/3\ NPI\ Assignment/2-DataStorage/      
 - Run command: ```ogr2ogr -f "PostgreSQL" PG:"dbname=wind_data user=davidstuder" wind.json -nln wind_table``` - Uploads wind.json file into wind_data databse  
