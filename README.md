@@ -1,8 +1,6 @@
 # NPI Web GIS Assignment
 
 #### David Studer
-#### Email: davidstuder@gmx.ch
-#### Tlf: +47 927 71 252
 
 ## Objective
 This README.md document explains the workflow for the Web-Gis-Assignment.
