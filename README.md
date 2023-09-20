@@ -9,7 +9,7 @@ This README.md document explains the workflow for the Web-Gis-Assignment.
 Each folder in the repository contains scripts and data necessary to complete one task. In addition to this document code is enriched with comments. The Assignment was done using MacOS. Some installation might differ on Windows or Linux.
 
 # 1-DataProcessing
-To convert the wind.csv file to a geosjon open the csvTOgeojson.py file. For running the file you need to have python installed inluding the geojson package. If you are using the Anaconda distribution you can use the following command in your terminal for installing geojson (macOS): '''conda install -c conda-forge geojson'''
+To convert the wind.csv file to a geosjon open the csvTOgeojson.py file. For running the file you need to have python installed inluding the geojson package. If you are using the Anaconda distribution you can use the following command in your terminal for installing geojson (macOS): ```conda install -c conda-forge geojson```
 
 Bonus: For guaranteeing the integrity of the processed information the csv_to_geojson funciton includes a try statement to validate each data entry. Several data entries were excluded due to wrong data formats.
 
